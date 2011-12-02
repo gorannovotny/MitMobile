@@ -1,7 +1,7 @@
 object Form1: TForm1
-  Left = 359
+  Left = 558
   Height = 600
-  Top = 165
+  Top = 178
   Width = 800
   BorderStyle = bsSingle
   Caption = 'Form1'
@@ -27,5 +27,68 @@ object Form1: TForm1
     ParentColor = False
     ParentFont = False
     Transparent = False
+  end
+  object DBGrid1: TDBGrid
+    Left = 200
+    Height = 256
+    Top = 304
+    Width = 544
+    Color = clWindow
+    Columns = <>
+    DataSource = Datasource1
+    TabOrder = 0
+  end
+  object DBLookupComboBox1: TDBLookupComboBox
+    Left = 120
+    Height = 25
+    Top = 112
+    Width = 336
+    DataField = 'Naziv'
+    DataSource = Datasource1
+    ListField = 'Naziv'
+    ListFieldIndex = 0
+    ListSource = Datasource1
+    LookupCache = False
+    TabOrder = 1
+  end
+  object SQLite3Connection1: TSQLite3Connection
+    Connected = True
+    LoginPrompt = False
+    DatabaseName = '/home/goran/Lazarus/MitMobile/sqlite.db'
+    KeepConnection = False
+    Transaction = SQLTransaction1
+    Options = []
+    left = 8
+    top = 568
+  end
+  object SQLTransaction1: TSQLTransaction
+    Active = True
+    Action = caNone
+    Database = SQLite3Connection1
+    left = 48
+    top = 568
+  end
+  object SQLQuery1: TSQLQuery
+    IndexName = 'DEFAULT_ORDER'
+    Active = True
+    Database = SQLite3Connection1
+    Transaction = SQLTransaction1
+    ReadOnly = False
+    SQL.Strings = (
+      'select e.naziv,d.distancam FROM ptstupcivr a,ptvarijantevr b, ptpostajevarijantvr c, ptpostajevr d,ptpostaje e'
+      'where a.VarijantaVRID = b.id'
+      'and c.varijantaid = b.id'
+      'and d.id  = c.nodepostajevrid'
+      'and e.id = d.postajaid'
+      'and a.id = 7'
+    )
+    Params = <>
+    left = 88
+    top = 568
+  end
+  object Datasource1: TDatasource
+    DataSet = SQLQuery1
+    left = 128
+    top = 568
   end
 end

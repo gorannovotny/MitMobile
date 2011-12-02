@@ -26,19 +26,28 @@
     <RunParams>
       <local>
         <FormatVersion Value="1"/>
+        <LaunchingApplication PathPlusParams="/usr/bin/xterm -T 'Lazarus Run Output' -e $(LazarusDir)/tools/runwait.sh $(TargetCmdLine)"/>
       </local>
     </RunParams>
-    <RequiredPackages Count="1">
+    <RequiredPackages Count="3">
       <Item1>
-        <PackageName Value="LCL"/>
+        <PackageName Value="FCL"/>
+        <MinVersion Major="1" Valid="True"/>
       </Item1>
+      <Item2>
+        <PackageName Value="SQLDBLaz"/>
+        <MinVersion Major="1" Release="1" Valid="True"/>
+      </Item2>
+      <Item3>
+        <PackageName Value="LCL"/>
+      </Item3>
     </RequiredPackages>
     <Units Count="2">
       <Unit0>
         <Filename Value="MitMobile.lpr"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="MitMobile"/>
-        <UsageCount Value="20"/>
+        <UsageCount Value="22"/>
       </Unit0>
       <Unit1>
         <Filename Value="unit1.pas"/>
@@ -51,7 +60,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="1" Y="1"/>
-        <UsageCount Value="20"/>
+        <UsageCount Value="22"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit1>
