@@ -28,27 +28,21 @@ object Form1: TForm1
     ParentFont = False
     Transparent = False
   end
-  object DBGrid1: TDBGrid
-    Left = 200
-    Height = 256
-    Top = 304
-    Width = 544
-    Color = clWindow
-    Columns = <>
-    DataSource = Datasource1
+  object Button1: TButton
+    Left = 114
+    Height = 25
+    Top = 62
+    Width = 75
+    Caption = 'Button1'
+    OnClick = Button1Click
     TabOrder = 0
   end
-  object DBLookupComboBox1: TDBLookupComboBox
-    Left = 120
-    Height = 25
-    Top = 112
-    Width = 336
-    DataField = 'Naziv'
-    DataSource = Datasource1
-    ListField = 'Naziv'
-    ListFieldIndex = 0
-    ListSource = Datasource1
-    LookupCache = False
+  object Panel1: TPanel
+    Left = 168
+    Height = 50
+    Top = 128
+    Width = 170
+    Caption = 'Panel1'
     TabOrder = 1
   end
   object SQLite3Connection1: TSQLite3Connection
@@ -61,21 +55,15 @@ object Form1: TForm1
     left = 8
     top = 568
   end
-  object SQLTransaction1: TSQLTransaction
-    Active = True
-    Action = caNone
-    Database = SQLite3Connection1
-    left = 48
-    top = 568
-  end
   object SQLQuery1: TSQLQuery
     IndexName = 'DEFAULT_ORDER'
     Active = True
+    AutoCalcFields = False
     Database = SQLite3Connection1
     Transaction = SQLTransaction1
     ReadOnly = False
     SQL.Strings = (
-      'select e.naziv,d.distancam FROM ptstupcivr a,ptvarijantevr b, ptpostajevarijantvr c, ptpostajevr d,ptpostaje e'
+      'select e.id,e.naziv FROM ptstupcivr a,ptvarijantevr b, ptpostajevarijantvr c, ptpostajevr d,ptpostaje e'
       'where a.VarijantaVRID = b.id'
       'and c.varijantaid = b.id'
       'and d.id  = c.nodepostajevrid'
@@ -87,8 +75,16 @@ object Form1: TForm1
     top = 568
   end
   object Datasource1: TDatasource
+    AutoEdit = False
     DataSet = SQLQuery1
     left = 128
+    top = 568
+  end
+  object SQLTransaction1: TSQLTransaction
+    Active = True
+    Action = caNone
+    Database = SQLite3Connection1
+    left = 48
     top = 568
   end
 end
