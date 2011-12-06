@@ -1,0 +1,59 @@
+object Form2: TForm2
+  Left = 610
+  Height = 224
+  Top = 206
+  Width = 172
+  BorderStyle = bsNone
+  Caption = 'Form2'
+  ClientHeight = 224
+  ClientWidth = 172
+  LCLVersion = '0.9.30'
+  object Panel1: TPanel
+    Left = 0
+    Height = 50
+    Top = 0
+    Width = 170
+    BevelWidth = 2
+    Caption = 'Panel1'
+    Color = clSilver
+    ParentColor = False
+    TabOrder = 0
+    OnClick = Panel1Click
+  end
+  object Panel2: TPanel
+    Left = 0
+    Height = 50
+    Top = 56
+    Width = 170
+    BevelWidth = 2
+    Caption = 'Panel2'
+    Color = clSilver
+    ParentColor = False
+    TabOrder = 1
+    OnClick = Panel1Click
+  end
+  object Panel3: TPanel
+    Left = 0
+    Height = 50
+    Top = 112
+    Width = 170
+    BevelWidth = 2
+    Caption = 'Panel3'
+    Color = clSilver
+    ParentColor = False
+    TabOrder = 2
+    OnClick = Panel1Click
+  end
+  object Panel4: TPanel
+    Left = 0
+    Height = 50
+    Top = 168
+    Width = 170
+    BevelWidth = 2
+    Caption = 'Panel4'
+    Color = clSilver
+    ParentColor = False
+    TabOrder = 3
+    OnClick = Panel1Click
+  end
+end

@@ -7,7 +7,7 @@ uses
   cthreads,
   {$ENDIF}{$ENDIF}
   Interfaces, // this includes the LCL widgetset
-  Forms, sqlite3laz, Unit1, Unit2
+  Forms, sqlite3laz, Unit1, Unit2, Unit3, zcomponent
   { you can add units after this };
 
 {$R *.res}
@@ -15,6 +15,7 @@ uses
 begin
   Application.Initialize;
   Application.CreateForm(TForm1, Form1);
+  Application.CreateForm(TForm2, Form2);
   Application.Run;
 end.
 
