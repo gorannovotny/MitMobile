@@ -1,13 +1,16 @@
 object Form1: TForm1
-  Left = 558
+  Left = 269
   Height = 600
-  Top = 178
+  Top = 160
   Width = 800
   BorderStyle = bsSingle
   Caption = 'Form1'
   ClientHeight = 600
   ClientWidth = 800
   Color = clMedGray
+  Font.Height = -27
+  Font.Name = 'Sans'
+  OnCreate = FormCreate
   LCLVersion = '0.9.30'
   object Label1: TLabel
     Left = 0
@@ -28,63 +31,52 @@ object Form1: TForm1
     ParentFont = False
     Transparent = False
   end
-  object Button1: TButton
-    Left = 114
-    Height = 25
-    Top = 62
-    Width = 75
-    Caption = 'Button1'
-    OnClick = Button1Click
-    TabOrder = 0
+  object Label2: TLabel
+    Left = 56
+    Height = 32
+    Top = 80
+    Width = 39
+    Caption = 'Od'
+    Font.Height = -27
+    Font.Name = 'Sans'
+    ParentColor = False
+    ParentFont = False
   end
   object Panel1: TPanel
-    Left = 168
-    Height = 50
-    Top = 128
+    Left = 104
+    Height = 42
+    Top = 72
     Width = 170
+    Alignment = taLeftJustify
+    BevelWidth = 2
     Caption = 'Panel1'
+    Color = clSilver
+    ParentColor = False
+    TabOrder = 0
+    OnClick = Panel1Click
+  end
+  object Label3: TLabel
+    Left = 56
+    Height = 32
+    Top = 136
+    Width = 39
+    Caption = 'Do'
+    Font.Height = -27
+    Font.Name = 'Sans'
+    ParentColor = False
+    ParentFont = False
+  end
+  object Panel2: TPanel
+    Left = 424
+    Height = 42
+    Top = 72
+    Width = 170
+    Alignment = taLeftJustify
+    BevelWidth = 2
+    Caption = 'Panel1'
+    Color = clSilver
+    ParentColor = False
     TabOrder = 1
-  end
-  object SQLite3Connection1: TSQLite3Connection
-    Connected = True
-    LoginPrompt = False
-    DatabaseName = '/home/goran/Lazarus/MitMobile/sqlite.db'
-    KeepConnection = False
-    Transaction = SQLTransaction1
-    Options = []
-    left = 8
-    top = 568
-  end
-  object SQLQuery1: TSQLQuery
-    IndexName = 'DEFAULT_ORDER'
-    Active = True
-    AutoCalcFields = False
-    Database = SQLite3Connection1
-    Transaction = SQLTransaction1
-    ReadOnly = False
-    SQL.Strings = (
-      'select e.id,e.naziv FROM ptstupcivr a,ptvarijantevr b, ptpostajevarijantvr c, ptpostajevr d,ptpostaje e'
-      'where a.VarijantaVRID = b.id'
-      'and c.varijantaid = b.id'
-      'and d.id  = c.nodepostajevrid'
-      'and e.id = d.postajaid'
-      'and a.id = 7'
-    )
-    Params = <>
-    left = 88
-    top = 568
-  end
-  object Datasource1: TDatasource
-    AutoEdit = False
-    DataSet = SQLQuery1
-    left = 128
-    top = 568
-  end
-  object SQLTransaction1: TSQLTransaction
-    Active = True
-    Action = caNone
-    Database = SQLite3Connection1
-    left = 48
-    top = 568
+    OnClick = Panel2Click
   end
 end

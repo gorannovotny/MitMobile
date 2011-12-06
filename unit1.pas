@@ -5,22 +5,22 @@ unit Unit1;
 interface
 
 uses
-  Classes, SysUtils, sqlite3conn, sqldb, db, FileUtil, Forms, Controls,
-  Graphics, Dialogs, StdCtrls, DbCtrls, DBGrids, ExtCtrls;
+  Forms, StdCtrls, ExtCtrls, Classes, Unit2;
 
 type
 
   { TForm1 }
 
   TForm1 = class(TForm)
-    Button1: TButton;
-    Datasource1: TDatasource;
     Label1: TLabel;
+    Label2: TLabel;
+    Label3: TLabel;
     Panel1: TPanel;
-    SQLite3Connection1: TSQLite3Connection;
-    SQLQuery1: TSQLQuery;
-    SQLTransaction1: TSQLTransaction;
-    procedure Button1Click(Sender: TObject);
+    Panel2: TPanel;
+
+    procedure FormCreate(Sender: TObject);
+    procedure Panel1Click(Sender: TObject);
+    procedure Panel2Click(Sender: TObject);
   private
     { private declarations }
   public
@@ -28,26 +28,43 @@ type
   end; 
 
 var
-  Form1: TForm1;
-  FirstNum:array [0..3] of TPanel;
-
+  Form1: TForm1; 
+  PanelList : array of TPanel;
 implementation
 
 {$R *.lfm}
 
 { TForm1 }
 
-procedure TForm1.Button1Click(Sender: TObject);
+{ TForm1 }
+
+
+
+{ TForm1 }
+
+procedure TForm1.Panel1Click(Sender: TObject);
+var a : TPanel;
 begin
-  FirstNum[0] := TPanel.Create(Self);
-  FirstNum[0].Parent := Self;
-  FirstNum[0].Top := 50;
-  FirstNum[0].Left:= 50;
-  FirstNum[0].Height:= 50;
-  FirstNum[0].Width:= 350;
-  FirstNum[0].Enabled:= true;
-  FirstNum[0].Caption:= 'IdeŠŠŠŠŠŠŠŠŠŠŠŠŠŠŠ';
-  FirstNum[0].Show;
+  a := Sender as TPanel;
+  Unit2.Open(a,PanelList);
+end;
+
+procedure TForm1.FormCreate(Sender: TObject);
+  var
+    x: Integer;
+  begin
+     SetLength(PanelList,10);
+     for x:=0 to 9 do
+     begin
+       PanelList[x] := TPanel.Create(self);
+       PanelList[x].Parent := Self;
+       PanelList[x].Visible:= false;
+     end;
+  end;
+
+procedure TForm1.Panel2Click(Sender: TObject);
+begin
+  Unit2.Close(PanelList);
 end;
 
 end.
