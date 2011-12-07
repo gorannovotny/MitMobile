@@ -12,15 +12,10 @@ type
   { TForm1 }
 
   TForm1 = class(TForm)
-    Label1: TLabel;
-    Label2: TLabel;
-    Label3: TLabel;
-    Panel1: TPanel;
-    Panel2: TPanel;
-
+    Button1: TButton;
+    procedure Button1Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
-    procedure Panel1Click(Sender: TObject);
-    procedure Panel2Click(Sender: TObject);
+
   private
     { private declarations }
   public
@@ -28,43 +23,28 @@ type
   end; 
 
 var
-  Form1: TForm1; 
-  PanelList : array of TPanel;
+  Form1: TForm1;
+
 implementation
 
 {$R *.lfm}
-
-{ TForm1 }
-
-{ TForm1 }
-
-
-
-{ TForm1 }
-
-procedure TForm1.Panel1Click(Sender: TObject);
-var a : TPanel;
+procedure TForm1.FormCreate(Sender: TObject);
+var Button2 : TButton;
 begin
-  a := Sender as TPanel;
-  Unit2.Open(a,PanelList);
+  Button2 := TButton.Create(Self);
+  Button2.Parent:= Self;
+  Button2.Top:= 100;
+  Button2.Left:= 100;
+  Button2.AutoSize:= true;
+  Button2.Caption:= 'Hello';
+  Button2.Visible:= true;
+//  Button2.OnClick:= Button1Click;
 end;
 
-procedure TForm1.FormCreate(Sender: TObject);
-  var
-    x: Integer;
-  begin
-     SetLength(PanelList,10);
-     for x:=0 to 9 do
-     begin
-       PanelList[x] := TPanel.Create(self);
-       PanelList[x].Parent := Self;
-       PanelList[x].Visible:= false;
-     end;
-  end;
-
-procedure TForm1.Panel2Click(Sender: TObject);
+procedure TForm1.Button1Click(Sender: TObject);
 begin
-  Unit2.Close(PanelList);
+  with (Sender as TButton) do
+       Caption := 'Clicked';
 end;
 
 end.

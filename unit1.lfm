@@ -1,7 +1,7 @@
 object Form1: TForm1
-  Left = 269
+  Left = 526
   Height = 600
-  Top = 160
+  Top = 149
   Width = 800
   BorderStyle = bsSingle
   Caption = 'Form1'
@@ -12,71 +12,13 @@ object Form1: TForm1
   Font.Name = 'Sans'
   OnCreate = FormCreate
   LCLVersion = '0.9.30'
-  object Label1: TLabel
-    Left = 0
-    Height = 32
-    Top = 0
-    Width = 800
-    AutoSize = False
-    BorderSpacing.CellAlignHorizontal = ccaCenter
-    BorderSpacing.CellAlignVertical = ccaCenter
-    Caption = 'Vozni red : Varaždin - Zagreb  Vožnja 10:35'
-    Color = clBlack
-    Font.Color = clSilver
-    Font.Height = -16
-    Font.Name = 'Liberation Sans'
-    Font.Style = [fsBold]
-    Layout = tlCenter
-    ParentColor = False
-    ParentFont = False
-    Transparent = False
-  end
-  object Label2: TLabel
-    Left = 56
-    Height = 32
-    Top = 80
-    Width = 39
-    Caption = 'Od'
-    Font.Height = -27
-    Font.Name = 'Sans'
-    ParentColor = False
-    ParentFont = False
-  end
-  object Panel1: TPanel
-    Left = 104
-    Height = 42
-    Top = 72
-    Width = 170
-    Alignment = taLeftJustify
-    BevelWidth = 2
-    Caption = 'Panel1'
-    Color = clSilver
-    ParentColor = False
+  object Button1: TButton
+    Left = 191
+    Height = 25
+    Top = 175
+    Width = 75
+    Caption = 'Button1'
+    OnClick = Button1Click
     TabOrder = 0
-    OnClick = Panel1Click
-  end
-  object Label3: TLabel
-    Left = 56
-    Height = 32
-    Top = 136
-    Width = 39
-    Caption = 'Do'
-    Font.Height = -27
-    Font.Name = 'Sans'
-    ParentColor = False
-    ParentFont = False
-  end
-  object Panel2: TPanel
-    Left = 424
-    Height = 42
-    Top = 72
-    Width = 170
-    Alignment = taLeftJustify
-    BevelWidth = 2
-    Caption = 'Panel1'
-    Color = clSilver
-    ParentColor = False
-    TabOrder = 1
-    OnClick = Panel2Click
   end
 end
