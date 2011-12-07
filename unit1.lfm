@@ -1,7 +1,7 @@
 object Form1: TForm1
-  Left = 822
+  Left = 755
   Height = 600
-  Top = 156
+  Top = 164
   Width = 800
   BorderStyle = bsSingle
   Caption = 'Form1'
@@ -53,7 +53,6 @@ object Form1: TForm1
     Color = clSilver
     ParentColor = False
     TabOrder = 0
-    OnClick = Panel1Click
   end
   object Label3: TLabel
     Left = 56
@@ -77,7 +76,15 @@ object Form1: TForm1
     Color = clSilver
     ParentColor = False
     TabOrder = 1
-    OnClick = Panel2Click
+  end
+  object Button1: TButton
+    Left = 216
+    Height = 69
+    Top = 235
+    Width = 208
+    Caption = 'Button1'
+    OnClick = Button1Click
+    TabOrder = 2
   end
   object ZConnection1: TZConnection
     Protocol = 'sqlite-3'
@@ -99,5 +106,15 @@ object Form1: TForm1
     DataSet = ZQuery1
     left = 144
     top = 533
+  end
+  object ZReadOnlyQuery1: TZReadOnlyQuery
+    Connection = ZConnection1
+    Active = True
+    SQL.Strings = (
+      'select * from PTPostaje'
+    )
+    Params = <>
+    left = 96
+    top = 490
   end
 end
