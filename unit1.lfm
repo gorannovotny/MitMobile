@@ -1,7 +1,7 @@
 object Form1: TForm1
-  Left = 526
+  Left = 755
   Height = 600
-  Top = 149
+  Top = 164
   Width = 800
   BorderStyle = bsSingle
   Caption = 'Form1'
@@ -20,5 +20,68 @@ object Form1: TForm1
     Caption = 'Button1'
     OnClick = Button1Click
     TabOrder = 0
+  end
+  object Label3: TLabel
+    Left = 56
+    Height = 32
+    Top = 136
+    Width = 39
+    Caption = 'Do'
+    Font.Height = -27
+    Font.Name = 'Sans'
+    ParentColor = False
+    ParentFont = False
+  end
+  object Panel2: TPanel
+    Left = 424
+    Height = 42
+    Top = 72
+    Width = 170
+    Alignment = taLeftJustify
+    BevelWidth = 2
+    Caption = 'Panel1'
+    Color = clSilver
+    ParentColor = False
+    TabOrder = 1
+  end
+  object Button1: TButton
+    Left = 216
+    Height = 69
+    Top = 235
+    Width = 208
+    Caption = 'Button1'
+    OnClick = Button1Click
+    TabOrder = 2
+  end
+  object ZConnection1: TZConnection
+    Protocol = 'sqlite-3'
+    Database = '/home/goran/work/MitMobile/sqlite.db'
+    Connected = True
+    left = 52
+    top = 533
+  end
+  object ZQuery1: TZQuery
+    Connection = ZConnection1
+    SQL.Strings = (
+      'select naziv from PTPostaje'
+    )
+    Params = <>
+    left = 96
+    top = 533
+  end
+  object Datasource1: TDatasource
+    DataSet = ZQuery1
+    left = 144
+    top = 533
+  end
+  object ZReadOnlyQuery1: TZReadOnlyQuery
+    Connection = ZConnection1
+    Active = True
+    SQL.Strings = (
+      'select * from PTPostaje'
+    )
+    Params = <>
+    left = 96
+    top = 490
   end
 end

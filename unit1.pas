@@ -5,46 +5,45 @@ unit Unit1;
 interface
 
 uses
-  Forms, StdCtrls, ExtCtrls, Classes, Unit2;
+  Forms, StdCtrls, ExtCtrls, db, ZConnection, ZDataset,Picker;
 
 type
-
   { TForm1 }
-
   TForm1 = class(TForm)
     Button1: TButton;
+    Datasource1: TDatasource;
+    Label1: TLabel;
+    Label2: TLabel;
+    Label3: TLabel;
+    Panel1: TPanel;
+    Panel2: TPanel;
+    ZConnection1: TZConnection;
+    ZQuery1: TZQuery;
+    ZReadOnlyQuery1: TZReadOnlyQuery;
+
     procedure Button1Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
 
-  private
-    { private declarations }
-  public
-    { public declarations }
-  end; 
+  end;
 
 var
-  Form1: TForm1;
+  Form1: TForm1; 
+  a : TPicker;
 
 implementation
-
 {$R *.lfm}
-procedure TForm1.FormCreate(Sender: TObject);
-var Button2 : TButton;
+
+procedure TForm1.FormCreate(Sender:TObject);
 begin
-  Button2 := TButton.Create(Self);
-  Button2.Parent:= Self;
-  Button2.Top:= 100;
-  Button2.Left:= 100;
-  Button2.AutoSize:= true;
-  Button2.Caption:= 'Hello';
-  Button2.Visible:= true;
-//  Button2.OnClick:= Button1Click;
+
+  a := TPicker.Create;
+  a.Prepare(Self);
+
 end;
 
 procedure TForm1.Button1Click(Sender: TObject);
 begin
-  with (Sender as TButton) do
-       Caption := 'Clicked';
+  a.Show(Sender as TButton);
 end;
 
 end.
