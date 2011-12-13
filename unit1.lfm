@@ -1,8 +1,9 @@
 object Form1: TForm1
-  Left = 755
+  Left = 315
   Height = 600
-  Top = 164
+  Top = 187
   Width = 800
+  Align = alLeft
   BorderStyle = bsSingle
   Caption = 'Form1'
   ClientHeight = 600
@@ -13,18 +14,18 @@ object Form1: TForm1
   OnCreate = FormCreate
   LCLVersion = '0.9.30'
   object Button1: TButton
-    Left = 191
-    Height = 25
-    Top = 175
-    Width = 75
-    Caption = 'Button1'
+    Left = 648
+    Height = 112
+    Top = 448
+    Width = 139
+    Caption = 'Print'
     OnClick = Button1Click
     TabOrder = 0
   end
   object Label3: TLabel
-    Left = 56
-    Height = 32
-    Top = 136
+    Left = 416
+    Height = 34
+    Top = 56
     Width = 39
     Caption = 'Do'
     Font.Height = -27
@@ -33,55 +34,163 @@ object Form1: TForm1
     ParentFont = False
   end
   object Panel2: TPanel
-    Left = 424
+    Left = 472
     Height = 42
-    Top = 72
-    Width = 170
+    Top = 48
+    Width = 282
     Alignment = taLeftJustify
     BevelWidth = 2
-    Caption = 'Panel1'
+    Caption = 'Zagreb'
     Color = clSilver
     ParentColor = False
     TabOrder = 1
-  end
-  object Button1: TButton
-    Left = 216
-    Height = 69
-    Top = 235
-    Width = 208
-    Caption = 'Button1'
     OnClick = Button1Click
+  end
+  object Label4: TLabel
+    Left = 40
+    Height = 34
+    Top = 56
+    Width = 39
+    Caption = 'Od'
+    Font.Height = -27
+    Font.Name = 'Sans'
+    ParentColor = False
+    ParentFont = False
+  end
+  object Panel3: TPanel
+    Left = 96
+    Height = 42
+    Top = 48
+    Width = 280
+    Alignment = taLeftJustify
+    BevelWidth = 2
+    Caption = 'Varaždin'
+    Color = clSilver
+    ParentColor = False
     TabOrder = 2
+    OnClick = Button1Click
+  end
+  object Label5: TLabel
+    Left = 40
+    Height = 34
+    Top = 128
+    Width = 153
+    Caption = 'Vrsta karte'
+    Font.Height = -27
+    Font.Name = 'Sans'
+    ParentColor = False
+    ParentFont = False
+  end
+  object Panel4: TPanel
+    Left = 200
+    Height = 42
+    Top = 120
+    Width = 176
+    Alignment = taLeftJustify
+    BevelWidth = 2
+    Caption = 'Redovna'
+    Color = clSilver
+    ParentColor = False
+    TabOrder = 3
+  end
+  object Label6: TLabel
+    Left = 416
+    Height = 34
+    Top = 128
+    Width = 92
+    Caption = 'Popust'
+    Font.Height = -27
+    Font.Name = 'Sans'
+    ParentColor = False
+    ParentFont = False
+  end
+  object Panel5: TPanel
+    Left = 528
+    Height = 42
+    Top = 120
+    Width = 226
+    Alignment = taLeftJustify
+    BevelWidth = 2
+    Caption = '0%'
+    Color = clSilver
+    ParentColor = False
+    TabOrder = 4
+  end
+  object Button2: TButton
+    Left = 336
+    Height = 89
+    Top = 224
+    Width = 144
+    Caption = '+'
+    TabOrder = 5
+  end
+  object ListBox1: TListBox
+    Left = 19
+    Height = 214
+    Top = 344
+    Width = 607
+    ItemHeight = 0
+    TabOrder = 6
+    TopIndex = -1
+  end
+  object Label1: TLabel
+    Left = 640
+    Height = 42
+    Top = 400
+    Width = 155
+    Caption = '34,18 Kn'
+    Font.Height = -34
+    Font.Name = 'Sans'
+    ParentColor = False
+    ParentFont = False
+  end
+  object Label2: TLabel
+    Left = 0
+    Height = 24
+    Top = 0
+    Width = 800
+    AutoSize = False
+    Caption = 'Vozni red: Varaždin - Zagreb     Polazak 10:32'
+    Color = clBlack
+    Font.Color = clSilver
+    Font.Height = -17
+    Font.Name = 'Sans'
+    ParentColor = False
+    ParentFont = False
+    Transparent = False
+  end
+  object Label7: TLabel
+    Left = 0
+    Height = 24
+    Top = 576
+    Width = 800
+    AutoSize = False
+    Caption = 'Blagajna 438,66 Kn'
+    Color = clBlack
+    Font.Color = clSilver
+    Font.Height = -17
+    Font.Name = 'Sans'
+    ParentColor = False
+    ParentFont = False
+    Transparent = False
   end
   object ZConnection1: TZConnection
     Protocol = 'sqlite-3'
     Database = '/home/goran/work/MitMobile/sqlite.db'
-    Connected = True
-    left = 52
-    top = 533
-  end
-  object ZQuery1: TZQuery
-    Connection = ZConnection1
-    SQL.Strings = (
-      'select naziv from PTPostaje'
-    )
-    Params = <>
-    left = 96
-    top = 533
+    left = 8
+    top = 8
   end
   object Datasource1: TDatasource
-    DataSet = ZQuery1
-    left = 144
-    top = 533
+    left = 88
+    top = 8
   end
   object ZReadOnlyQuery1: TZReadOnlyQuery
     Connection = ZConnection1
-    Active = True
     SQL.Strings = (
       'select * from PTPostaje'
     )
     Params = <>
-    left = 96
-    top = 490
+    left = 48
+    top = 8
   end
 end

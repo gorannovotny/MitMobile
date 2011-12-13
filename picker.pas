@@ -5,43 +5,72 @@ unit Picker;
 interface
 
 uses
-  Forms, StdCtrls, ExtCtrls;
+  Forms, StdCtrls, ExtCtrls,SysUtils,Controls,Classes,Graphics;
 
+const MaxPicks = 5;
 type
   TPicker = class
   private
     Panels : array of TPanel;
   public
-    procedure Prepare(Parent: TForm);
+    constructor Create(Parent: TForm);
     procedure Show(gumb : TButton);
     procedure Click(Sender : TObject);
+    procedure MouseDown(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+    procedure MouseUp(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
   end;
-
+var
+  ParentGumb : TButton;
 implementation
 
-procedure TPicker.Prepare(Parent: TForm);
+constructor TPicker.Create(Parent: TForm);
+var x : Integer;
 begin
-  SetLength(Panels,2);
-  Panels[0] := TPanel.Create(Parent);
-  Panels[0].Parent := Parent;
-  Panels[0].OnClick:= @Click;
-  Panels[0].OnMouseLeave:= @Click;
-  Panels[0].Hide;
+  SetLength(Panels,MaxPicks);
+  for x:= 0 to MaxPicks - 1  do
+  begin
+    Panels[x] := TPanel.Create(Parent);
+    Panels[x].Parent := Parent;
+    Panels[x].Color := clDefault;
+    Panels[x].Alignment:= taLeftJustify;
+    Panels[x].OnClick:= @Click;
+    Panels[x].OnMouseDown:= @MouseDown;
+    Panels[x].OnMouseUp:= @MouseUp;
+    Panels[x].Hide;
+  end;
 end;
 
 procedure TPicker.Show(gumb: TButton);
+var x:Integer;
 begin
-  Panels[0].Caption := 'Test';
-  Panels[0].Top := gumb.Top + gumb.Height;
-  Panels[0].Left := gumb.Left;;
-  Panels[0].Show;
+  ParentGumb := gumb;
+  for x:= 0 to MaxPicks - 1  do
+  begin
+  Panels[x].Caption :=  IntToStr(x) + '. Test';
+  Panels[x].Top := gumb.Top + gumb.Height + Panels[x].Height * x;
+  Panels[x].Left := gumb.Left;
+  Panels[x].Show;
+  end
 end;
 
 procedure TPicker.Click(Sender:TObject);
+var x:Integer;
 begin
-  if Panels[0].IsControlVisible then
-     Panels[0].Visible:= false;
+  for x:= 0 to MaxPicks - 1  do
+  begin
+     Panels[x].Visible:= false;
+  end;
+  ParentGumb.Caption := (Sender as TPanel).Caption;
+end;
 
+procedure TPicker.MouseDown(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+begin
+     (Sender as TPanel).Color:= clYellow;
+end;
+
+procedure TPicker.MouseUp(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+begin
+     (Sender as TPanel).Color:= clDefault;
 end;
 
 end.
