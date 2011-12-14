@@ -1,0 +1,13 @@
+object Picker: TPicker
+  Left = 209
+  Height = 524
+  Top = 205
+  Width = 294
+  AutoSize = True
+  BorderStyle = bsNone
+  Caption = 'Picker'
+  Font.Height = -27
+  Font.Name = 'Sans'
+  OnCreate = FormCreate
+  LCLVersion = '0.9.30'
+end

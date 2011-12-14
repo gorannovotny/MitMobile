@@ -9,58 +9,68 @@ uses
 
 const MaxPicks = 5;
 type
-  TPicker = class
+
+  { TPicker }
+
+  TPicker = class (TForm)
+    procedure FormCreate(Sender: TObject);
   private
     Panels : array of TPanel;
-  public
-    constructor Create(Parent: TForm);
-    procedure Show(gumb : TButton);
     procedure Click(Sender : TObject);
     procedure MouseDown(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
     procedure MouseUp(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+  public
+    procedure Pokazi(gumb : TButton);
   end;
 var
   ParentGumb : TButton;
+  PickForm :TPicker;
 implementation
+{$R *.lfm}
 
-constructor TPicker.Create(Parent: TForm);
+procedure TPicker.FormCreate(Sender : TObject);
 var x : Integer;
+    y : TForm;
 begin
   SetLength(Panels,MaxPicks);
   for x:= 0 to MaxPicks - 1  do
   begin
-    Panels[x] := TPanel.Create(Parent);
-    Panels[x].Parent := Parent;
+    Panels[x] := TPanel.Create(self);
+    Panels[x].Parent := self;
     Panels[x].Color := clDefault;
     Panels[x].Alignment:= taLeftJustify;
     Panels[x].OnClick:= @Click;
     Panels[x].OnMouseDown:= @MouseDown;
     Panels[x].OnMouseUp:= @MouseUp;
-    Panels[x].Hide;
+    Panels[x].Caption :=  IntToStr(x) + '. Test';
+    Panels[x].Top := ClientOrigin.y + Panels[x].Height * x;
+    Panels[x].Left := ClientOrigin.x;
+    Panels[x].Show;
   end;
 end;
 
-procedure TPicker.Show(gumb: TButton);
+
+procedure TPicker.Pokazi(gumb: TButton);
 var x:Integer;
 begin
   ParentGumb := gumb;
+  Self.Top := gumb.Height + gumb.Top + gumb.parent.ClientOrigin.Y;
+  Self.Left:= gumb.left + gumb.parent.ClientOrigin.X;
   for x:= 0 to MaxPicks - 1  do
   begin
   Panels[x].Caption :=  IntToStr(x) + '. Test';
-  Panels[x].Top := gumb.Top + gumb.Height + Panels[x].Height * x;
-  Panels[x].Left := gumb.Left;
+  Panels[x].Top :=  Panels[x].Height * x;
+  Panels[x].Left := 0;
   Panels[x].Show;
-  end
+  end;
+  Self.ShowModal;
 end;
 
 procedure TPicker.Click(Sender:TObject);
 var x:Integer;
 begin
-  for x:= 0 to MaxPicks - 1  do
-  begin
-     Panels[x].Visible:= false;
-  end;
-  ParentGumb.Caption := (Sender as TPanel).Caption;
+     ParentGumb.Caption := (Sender as TPanel).Caption;
+     Self.Close;
 end;
 
 procedure TPicker.MouseDown(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
