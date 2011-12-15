@@ -1,7 +1,7 @@
 object Form1: TForm1
-  Left = 601
+  Left = 748
   Height = 600
-  Top = 202
+  Top = 214
   Width = 800
   Align = alLeft
   BorderStyle = bsSingle

@@ -1,15 +1,27 @@
 object Picker: TPicker
-  Left = 492
+  Left = 422
   Height = 524
-  Top = 169
+  Top = 260
   Width = 294
   AutoSize = True
   BorderStyle = bsNone
   Caption = 'Picker'
+  ClientHeight = 524
+  ClientWidth = 294
   Font.Height = -27
   Font.Name = 'Sans'
   OnCreate = FormCreate
   LCLVersion = '0.9.30'
+  object DownButton: TButton
+    Left = 32
+    Height = 31
+    Top = 304
+    Width = 158
+    Caption = '>'
+    OnClick = DownButtonClick
+    TabOrder = 0
+    Visible = False
+  end
   object ZReadOnlyQuery1: TZReadOnlyQuery
     Connection = ZConnection1
     SQL.Strings = (
@@ -18,7 +30,7 @@ object Picker: TPicker
       'AND   PTPostajeVarijantVR.NodePostajeVRID = PTPostajeVR.ID'
       'AND   PTVarijanteVR.id = PTPostajeVarijantVR.VarijantaID'
       'AND   PTStupciVR.VarijantaVRID = PTVarijanteVR.id'
-      'AND   PTStupciVR.ID = 7'
+      'AND   PTStupciVR.ID = 5'
       'ORDER BY 1,2'
     )
     Params = <>

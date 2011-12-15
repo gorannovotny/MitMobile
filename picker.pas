@@ -14,8 +14,10 @@ type
   { TPicker }
 
   TPicker = class (TForm)
+    DownButton: TButton;
     ZConnection1: TZConnection;
     ZReadOnlyQuery1: TZReadOnlyQuery;
+    procedure DownButtonClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
   private
     Panels : array of TPanel;
@@ -49,6 +51,24 @@ begin
   end;
 end;
 
+procedure TPicker.DownButtonClick(Sender: TObject);
+var x : Integer;
+begin
+  ZReadOnlyQuery1.MoveBy(1);
+  if ZReadOnlyQuery1.EOF then
+          DownButton.Visible:= false
+  else
+    begin
+      for x:=0 to MaxPicks - 2  do
+        begin
+          Panels[x].Caption := Panels[x+1].Caption;
+          Panels[x].Tag :=  Panels[x+1].Tag;
+        end;
+      Panels[x+1].Caption :=  ZReadOnlyQuery1.FieldByName('Naziv').AsString;
+      Panels[x+1].Tag :=  ZReadOnlyQuery1.FieldByName('ID').AsInteger;
+    end;
+end;
+
 
 procedure TPicker.Pokazi(gumb: TButton);
 var x:Integer;
@@ -57,16 +77,28 @@ begin
   PickForm.Top := gumb.Height + gumb.Top + gumb.parent.ClientOrigin.Y;
   PickForm.Left:= gumb.left + gumb.parent.ClientOrigin.X;
   ZReadOnlyQuery1.Open;
-  for x:= 0 to MaxPicks - 1  do
-  begin
-    Panels[x].Caption :=  ZReadOnlyQuery1.FieldByName('Naziv').AsString;
-    Panels[x].Tag :=  ZReadOnlyQuery1.FieldByName('ID').AsInteger;
-    Panels[x].Top :=  Panels[x].Height * x;
-    Panels[x].Left := 0;
-    Panels[x].Width:= gumb.Width;
-    ZReadOnlyQuery1.Next;
-  end;
-  PickForm.ShowModal;
+  ZReadOnlyQuery1.FindFirst;
+  x:= 0;
+  while not ZReadOnlyQuery1.EOF and (x < MaxPicks) do
+    begin
+      Panels[x].Caption :=  ZReadOnlyQuery1.FieldByName('Naziv').AsString;
+      Panels[x].Tag :=  ZReadOnlyQuery1.FieldByName('ID').AsInteger;
+      Panels[x].Top :=  gumb.Height * x;
+      Panels[x].Left := 0;
+      Panels[x].Width:= gumb.Width;
+      Panels[x].Height:= gumb.Height;
+      x := x + 1;
+      ZReadOnlyQuery1.Next;
+    end;
+    if (x = MaxPicks) and (not ZReadOnlyQuery1.EOF) then
+      begin
+        DownButton.Top := gumb.Height * x;
+        DownButton.Left := 0;
+        DownButton.Width:= gumb.Width;
+        DownButton.Visible:= true;
+      end;
+    PickForm.ShowModal;
+    ZReadOnlyQuery1.Close;
 end;
 
 procedure TPicker.Click(Sender:TObject);
