@@ -60,6 +60,7 @@ begin
   for x:= 0 to MaxPicks - 1  do
   begin
     Panels[x].Caption :=  ZReadOnlyQuery1.FieldByName('Naziv').AsString;
+    Panels[x].Tag :=  ZReadOnlyQuery1.FieldByName('ID').AsInteger;
     Panels[x].Top :=  Panels[x].Height * x;
     Panels[x].Left := 0;
     Panels[x].Width:= gumb.Width;
