@@ -1,7 +1,7 @@
 object Form1: TForm1
-  Left = 664
+  Left = 508
   Height = 600
-  Top = 210
+  Top = 150
   Width = 800
   Align = alLeft
   BorderStyle = bsSingle
@@ -23,7 +23,7 @@ object Form1: TForm1
   end
   object Label3: TLabel
     Left = 416
-    Height = 32
+    Height = 34
     Top = 56
     Width = 39
     Caption = 'Do'
@@ -47,7 +47,7 @@ object Form1: TForm1
   end
   object Label4: TLabel
     Left = 40
-    Height = 32
+    Height = 34
     Top = 56
     Width = 39
     Caption = 'Od'
@@ -71,7 +71,7 @@ object Form1: TForm1
   end
   object Label5: TLabel
     Left = 40
-    Height = 32
+    Height = 34
     Top = 128
     Width = 153
     Caption = 'Vrsta karte'
@@ -94,7 +94,7 @@ object Form1: TForm1
   end
   object Label6: TLabel
     Left = 416
-    Height = 32
+    Height = 34
     Top = 128
     Width = 92
     Caption = 'Popust'
@@ -134,7 +134,7 @@ object Form1: TForm1
   end
   object Label1: TLabel
     Left = 640
-    Height = 41
+    Height = 42
     Top = 400
     Width = 155
     Caption = '34,18 Kn'

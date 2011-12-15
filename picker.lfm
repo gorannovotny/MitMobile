@@ -1,7 +1,7 @@
 object Picker: TPicker
-  Left = 209
+  Left = 545
   Height = 524
-  Top = 205
+  Top = 187
   Width = 294
   AutoSize = True
   BorderStyle = bsNone
@@ -10,4 +10,24 @@ object Picker: TPicker
   Font.Name = 'Sans'
   OnCreate = FormCreate
   LCLVersion = '0.9.30'
+  object ZReadOnlyQuery1: TZReadOnlyQuery
+    Connection = ZConnection1
+    SQL.Strings = (
+      'SELECT PTStupciVR.id,ptstupcivr.smervoznje,ptpostajevarijantvr.id,ptpostaje.naziv FROM PTPostaje,PTPostajeVR,PTPostajeVarijantVR,PTVarijanteVR,PTStupciVR'
+      'WHERE PTPostajeVR.postajaid = PTPostaje.id'
+      'AND   PTPostajeVarijantVR.NodePostajeVRID = PTPostajeVR.ID'
+      'AND   PTVarijanteVR.id = PTPostajeVarijantVR.VarijantaID'
+      'AND   PTStupciVR.VarijantaVRID = PTVarijanteVR.id'
+      'ORDER BY 1,3'
+    )
+    Params = <>
+    left = 56
+    top = 408
+  end
+  object ZConnection1: TZConnection
+    Protocol = 'sqlite'
+    Database = 'sqlite.db'
+    left = 8
+    top = 408
+  end
 end
