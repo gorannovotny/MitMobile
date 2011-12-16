@@ -8,17 +8,19 @@ uses
   Forms, StdCtrls, ExtCtrls, SysUtils, Controls, Classes, Graphics, ZDataset,
   ZConnection;
 
-const MaxPicks = 5;
+const MaxPicks = 8;
+      ArrSize   = 20;
 type
   { TPicker }
   TPicker = class (TForm)
     DownButton: TButton;
-    ZConnection1: TZConnection;
-    ZReadOnlyQuery1: TZReadOnlyQuery;
+    UpButton: TButton;
     procedure DownButtonClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
+    procedure UpButtonClick(Sender: TObject);
   private
     Panels : array of TPanel;
+    Recs : array of String;
     procedure Click(Sender : TObject);
     procedure MouseDown(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
     procedure MouseUp(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
@@ -28,13 +30,12 @@ type
 var
   ParentGumb : TButton;
   PickForm :TPicker;
-
+  y : Integer  ;
 implementation
 {$R *.lfm}
 
 procedure TPicker.FormCreate(Sender : TObject);
 var x : Integer;
-    y : TForm;
 begin
   SetLength(Panels,MaxPicks);
   for x:= 0 to MaxPicks - 1  do
@@ -46,54 +47,83 @@ begin
     Panels[x].OnClick:= @Click;
     Panels[x].OnMouseDown:= @MouseDown;
     Panels[x].OnMouseUp:= @MouseUp;
+    Panels[x].Visible:= false;
   end;
+  SetLength(Recs,ArrSize);
+  for x:= 0 to ArrSize - 1  do
+    begin
+    Recs[x] := IntToStr(x);
+    end;
+end;
+
+procedure TPicker.UpButtonClick(Sender: TObject);
+var x : Integer;
+begin
+  for x:=MaxPicks - 1 downto 1  do
+    begin
+    Panels[x].Caption := Panels[x-1].Caption;
+    Panels[x].Tag :=  Panels[x-1].Tag;
+    end;
+  y:=y-1;
+  Panels[0].Caption :=  Recs[y-MaxPicks];
+  if (y-MaxPicks)<1 then
+    UpButton.Enabled:= false;
+  if y < ArrSize then
+    DownButton.Enabled:= true;
 end;
 
 procedure TPicker.DownButtonClick(Sender: TObject);
 var x : Integer;
 begin
-  begin
   for x:=0 to MaxPicks - 2  do
     begin
     Panels[x].Caption := Panels[x+1].Caption;
     Panels[x].Tag :=  Panels[x+1].Tag;
     end;
-  Panels[x+1].Caption :=  ZReadOnlyQuery1.FieldByName('Naziv').AsString;
-  Panels[x+1].Tag :=  ZReadOnlyQuery1.FieldByName('ID').AsInteger;
-  ZReadOnlyQuery1.Next;
-  if ZReadOnlyQuery1.EOF then DownButton.Visible:= false;
+  Panels[x+1].Caption :=  Recs[y];
+  y:=y+1;
+  if y>0 then
+    UpButton.Enabled:= true;
+  if y >= ArrSize then
+    DownButton.Enabled:= false;
 end;
 
 
 procedure TPicker.Pokazi(gumb: TButton);
-var x:Integer;
+var x,razmak:Integer;
 begin
   ParentGumb := gumb;
   PickForm.Top := gumb.Height + gumb.Top + gumb.parent.ClientOrigin.Y;
   PickForm.Left:= gumb.left + gumb.parent.ClientOrigin.X;
-  ZReadOnlyQuery1.Open;
-  ZReadOnlyQuery1.FindFirst;
-  x:= 0;
-  while not ZReadOnlyQuery1.EOF do
-    begin
-    Panels[x].Caption :=  ZReadOnlyQuery1.FieldByName('Naziv').AsString;
-    Panels[x].Tag :=  ZReadOnlyQuery1.FieldByName('ID').AsInteger;
-    Panels[x].Top :=  gumb.Height * x;
+  razmak:= 0;
+  y:= 0;
+  UpButton.Top := 0;
+  UpButton.Left := 0;
+  UpButton.Width:= gumb.Width;
+  UpButton.Show;
+
+  for x:= 0 to MaxPicks - 1 do begin
+    Panels[x].Caption :=  Recs[y];
+    Panels[x].Top :=  gumb.Height * x + UpButton.Height;
     Panels[x].Left := 0;
     Panels[x].Width:= gumb.Width;
     Panels[x].Height:= gumb.Height;
-    x := x + 1;
-    ZReadOnlyQuery1.Next;
-    end;
-  if (x = MaxPicks) and (not ZReadOnlyQuery1.EOF) then
-    begin
-    DownButton.Top := gumb.Height * x;
-    DownButton.Left := 0;
-    DownButton.Width:= gumb.Width;
-    DownButton.Visible:= true;
-    end;
+    Panels[x].Visible:= true;
+
+    y := y + 1;
+    if y >= ArrSize then break;
+  end;
+  DownButton.Top := gumb.Height * (x+1) + UpButton.Height;
+  DownButton.Left := 0;
+  DownButton.Width:= gumb.Width;
+  DownButton.Show;
+  if (y -MaxPicks) <= 0  then begin
+    UpButton.Enabled:= false;
+  end;
+  if y >= ArrSize then begin
+    DownButton.Enabled:= false;
+  end;
   PickForm.ShowModal;
-  ZReadOnlyQuery1.Close;
 end;
 
 

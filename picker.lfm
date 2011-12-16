@@ -1,7 +1,7 @@
 object Picker: TPicker
-  Left = 422
+  Left = 526
   Height = 524
-  Top = 260
+  Top = 247
   Width = 294
   AutoSize = True
   BorderStyle = bsNone
@@ -13,35 +13,23 @@ object Picker: TPicker
   OnCreate = FormCreate
   LCLVersion = '0.9.30'
   object DownButton: TButton
-    Left = 32
+    Left = 72
     Height = 31
-    Top = 304
+    Top = 208
     Width = 158
     Caption = '>'
     OnClick = DownButtonClick
     TabOrder = 0
     Visible = False
   end
-  object ZReadOnlyQuery1: TZReadOnlyQuery
-    Connection = ZConnection1
-    SQL.Strings = (
-      'SELECT ptpostajevarijantvr.id,ptpostaje.naziv FROM PTPostaje,PTPostajeVR,PTPostajeVarijantVR,PTVarijanteVR,PTStupciVR'
-      'WHERE PTPostajeVR.postajaid = PTPostaje.id'
-      'AND   PTPostajeVarijantVR.NodePostajeVRID = PTPostajeVR.ID'
-      'AND   PTVarijanteVR.id = PTPostajeVarijantVR.VarijantaID'
-      'AND   PTStupciVR.VarijantaVRID = PTVarijanteVR.id'
-      'AND   PTStupciVR.ID = 5'
-      'ORDER BY 1,2'
-    )
-    Params = <>
-    left = 136
-    top = 408
-  end
-  object ZConnection1: TZConnection
-    Protocol = 'sqlite-3'
-    Database = '/home/goran/work/MitMobile/sqlite.db'
-    Connected = True
-    left = 48
-    top = 408
+  object UpButton: TButton
+    Left = 72
+    Height = 31
+    Top = 152
+    Width = 158
+    Caption = '<'
+    OnClick = UpButtonClick
+    TabOrder = 1
+    Visible = False
   end
 end
