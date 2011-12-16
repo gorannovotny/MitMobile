@@ -5,7 +5,7 @@ unit Unit1;
 interface
 
 uses
-  Forms, StdCtrls, ExtCtrls, db, ZConnection, ZDataset,Picker, Controls, Classes;
+  Forms, StdCtrls, ExtCtrls, db, ZConnection, ZDataset,Picker, Controls, Classes,SysUtils;
 
 type
   { TForm1 }
@@ -13,6 +13,7 @@ type
     Button1: TButton;
     Button2: TButton;
     Datasource1: TDatasource;
+    Label2: TLabel;
     Label1: TLabel;
     HeaderPanel: TLabel;
     Label3: TLabel;
@@ -26,12 +27,14 @@ type
     OdPanel: TPanel;
     KartaPanel: TPanel;
     PopustPanel: TPanel;
+    Timer1: TTimer;
     ZConnection1: TZConnection;
     ZReadOnlyQuery1: TZReadOnlyQuery;
 
     procedure Button1Click(Sender: TObject);
     procedure Button1MouseDown(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Integer);
+    procedure Timer1Timer(Sender: TObject);
 
   end;
 
@@ -53,6 +56,11 @@ procedure TForm1.Button1MouseDown(Sender: TObject; Button: TMouseButton;
   Shift: TShiftState; X, Y: Integer);
 begin
 
+end;
+
+procedure TForm1.Timer1Timer(Sender: TObject);
+begin
+     Label2.Caption:=  TimeToStr(Now);
 end;
 
 
