@@ -34,4 +34,27 @@ object Picker: TPicker
     TabOrder = 1
     Visible = False
   end
+  object ZConnection1: TZConnection
+    Protocol = 'sqlite-3'
+    Database = '/home/goran/work/MitMobile/sqlite.db'
+    Connected = True
+    left = 46
+    top = 448
+  end
+  object ZReadOnlyQuery1: TZReadOnlyQuery
+    Connection = ZConnection1
+    Active = True
+    SQL.Strings = (
+      'SELECT ptpostajevarijantvr.id,ptpostaje.naziv FROM PTPostaje,PTPostajeVR,PTPostajeVarijantVR,PTVarijanteVR,PTStupciVR'
+      'WHERE PTPostajeVR.postajaid = PTPostaje.id'
+      'AND   PTPostajeVarijantVR.NodePostajeVRID = PTPostajeVR.ID'
+      'AND   PTVarijanteVR.id = PTPostajeVarijantVR.VarijantaID'
+      'AND   PTStupciVR.VarijantaVRID = PTVarijanteVR.id'
+      'AND   PTStupciVR.ID = 7'
+      'ORDER BY 1'
+    )
+    Params = <>
+    left = 104
+    top = 448
+  end
 end

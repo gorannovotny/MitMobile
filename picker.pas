@@ -9,30 +9,44 @@ uses
   ZConnection;
 
 const MaxPicks = 8;
-      ArrSize   = 20;
 type
   { TPicker }
   TPicker = class (TForm)
     DownButton: TButton;
     UpButton: TButton;
+    ZConnection1: TZConnection;
+    ZReadOnlyQuery1: TZReadOnlyQuery;
     procedure DownButtonClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure UpButtonClick(Sender: TObject);
   private
     Panels : array of TPanel;
-    Recs : array of String;
+    Recs : array of record
+           id : Integer;
+           naziv:String;
+           end;
     procedure Click(Sender : TObject);
     procedure MouseDown(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
     procedure MouseUp(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+    function FindIndex(x:Integer):Integer;
   public
     procedure Pokazi(gumb : TButton);
   end;
 var
   ParentGumb : TButton;
   PickForm :TPicker;
+  ArrSize  : Integer;
   y : Integer  ;
 implementation
 {$R *.lfm}
+
+function TPicker.FindIndex(x:Integer):Integer;
+var i:Integer;
+begin
+  for i:= 0 to ArrSize do
+    if Recs[i].id = x then break;
+  Result := i
+end;
 
 procedure TPicker.FormCreate(Sender : TObject);
 var x : Integer;
@@ -51,11 +65,19 @@ begin
     Panels[x].OnMouseUp:= @MouseUp;
     Panels[x].Visible:= false;
   end;
+  ZReadOnlyQuery1.Open;
+  ZReadOnlyQuery1.FindFirst;
+  x:= 0;
+  SetLength(Recs,100);
+  while not ZReadOnlyQuery1.EOF do
+  begin
+        Recs[x].id := ZReadOnlyQuery1.FindField('id').AsInteger;
+        Recs[x].naziv := ZReadOnlyQuery1.FindField('naziv').AsString;
+        ZReadOnlyQuery1.Next;
+        x:= x + 1;
+  end;
+  ArrSize := x;
   SetLength(Recs,ArrSize);
-  for x:= 0 to ArrSize - 1  do
-    begin
-    Recs[x] := IntToStr(x);
-    end;
 end;
 
 procedure TPicker.UpButtonClick(Sender: TObject);
@@ -67,8 +89,8 @@ begin
     Panels[x].Tag :=  Panels[x-1].Tag;
     end;
   y:=y-1;
-  Panels[0].Caption :=  Recs[y-MaxPicks];
-  Panels[0].Tag :=  y-MaxPicks;
+  Panels[0].Caption :=  Recs[y-MaxPicks].naziv;
+  Panels[0].Tag :=  Recs[y-MaxPicks].id;
   if (y-MaxPicks)<1 then
     UpButton.Enabled:= false;
   if y < ArrSize then
@@ -83,8 +105,8 @@ begin
     Panels[x].Caption := Panels[x+1].Caption;
     Panels[x].Tag :=  Panels[x+1].Tag;
     end;
-  Panels[x+1].Caption :=  Recs[y];
-  Panels[x+1].Tag :=  y;
+  Panels[x+1].Caption :=  Recs[y].naziv;
+  Panels[x+1].Tag :=  Recs[y].id;
   y:=y+1;
   if y>0 then
     UpButton.Enabled:= true;
@@ -94,13 +116,12 @@ end;
 
 
 procedure TPicker.Pokazi(gumb: TButton);
-var x,razmak:Integer;
+var x:Integer;
 begin
   ParentGumb := gumb;
   PickForm.Top := gumb.Top + gumb.parent.ClientOrigin.Y - UpButton.Height;
   PickForm.Left:= gumb.left + gumb.parent.ClientOrigin.X;
-  razmak:= 0;
-  y:= gumb.tag;
+  y:= FindIndex(gumb.tag);
   if y > (ArrSize - MaxPicks) then y := ArrSize - MaxPicks;
   UpButton.Top := 0;
   UpButton.Left := 0;
@@ -109,8 +130,8 @@ begin
   UpButton.Show;
 
   for x:= 0 to MaxPicks - 1 do begin
-    Panels[x].Caption :=  Recs[y];
-    Panels[x].Tag := y;
+    Panels[x].Caption :=  Recs[y].naziv;
+    Panels[x].Tag := Recs[y].id;
     Panels[x].Top :=  gumb.Height * x + UpButton.Height;
     Panels[x].Left := 0;
     Panels[x].Width:= gumb.Width;
