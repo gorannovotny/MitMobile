@@ -1,7 +1,7 @@
 object Picker: TPicker
-  Left = 353
+  Left = 0
   Height = 524
-  Top = 151
+  Top = 218
   Width = 294
   AutoSize = True
   BorderStyle = bsNone

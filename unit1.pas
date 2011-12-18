@@ -12,7 +12,10 @@ type
   TForm1 = class(TForm)
     Button1: TButton;
     Button2: TButton;
+    Button3: TButton;
+    Button4: TButton;
     Datasource1: TDatasource;
+    Edit1: TEdit;
     Label2: TLabel;
     Label1: TLabel;
     HeaderPanel: TLabel;
@@ -34,6 +37,8 @@ type
     procedure Button1Click(Sender: TObject);
     procedure Button1MouseDown(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Integer);
+    procedure Button2Click(Sender: TObject);
+    procedure ListBox1Click(Sender: TObject);
     procedure Timer1Timer(Sender: TObject);
 
   end;
@@ -56,6 +61,17 @@ procedure TForm1.Button1MouseDown(Sender: TObject; Button: TMouseButton;
   Shift: TShiftState; X, Y: Integer);
 begin
 
+end;
+
+procedure TForm1.Button2Click(Sender: TObject);
+begin
+  ListBox1.Items.Add(OdPanel.Caption + ' - ' + DoPanel.Caption + ' ' + KartaPanel.Caption + ' ' + PopustPanel.Caption);
+end;
+
+procedure TForm1.ListBox1Click(Sender: TObject);
+begin
+
+  ListBox1.Items.Delete(ListBox1.ItemIndex);
 end;
 
 procedure TForm1.Timer1Timer(Sender: TObject);

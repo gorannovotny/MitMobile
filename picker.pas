@@ -8,7 +8,7 @@ uses
   Forms, StdCtrls, ExtCtrls, SysUtils, Controls, Classes, Graphics, ZDataset,
   ZConnection;
 
-const MaxPicks = 8;
+const MaxPicks = 5;
 type
   { TPicker }
   TPicker = class (TForm)

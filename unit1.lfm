@@ -1,7 +1,7 @@
 object Form1: TForm1
-  Left = 346
+  Left = 390
   Height = 600
-  Top = 89
+  Top = 57
   Width = 800
   Align = alLeft
   BorderStyle = bsSingle
@@ -13,16 +13,16 @@ object Form1: TForm1
   Font.Name = 'Sans'
   LCLVersion = '0.9.30'
   object Button1: TButton
-    Left = 648
+    Left = 629
     Height = 112
     Top = 448
-    Width = 139
+    Width = 166
     Caption = 'Print'
     OnClick = Button1Click
     TabOrder = 0
   end
   object Label3: TLabel
-    Left = 416
+    Left = 320
     Height = 32
     Top = 56
     Width = 39
@@ -33,10 +33,10 @@ object Form1: TForm1
     ParentFont = False
   end
   object DoPanel: TPanel
-    Left = 472
-    Height = 42
-    Top = 48
-    Width = 282
+    Left = 360
+    Height = 82
+    Top = 32
+    Width = 264
     Alignment = taLeftJustify
     BevelWidth = 2
     Caption = 'Zagreb'
@@ -46,7 +46,7 @@ object Form1: TForm1
     OnClick = Button1Click
   end
   object Label4: TLabel
-    Left = 40
+    Left = 8
     Height = 32
     Top = 56
     Width = 39
@@ -57,10 +57,10 @@ object Form1: TForm1
     ParentFont = False
   end
   object OdPanel: TPanel
-    Left = 96
-    Height = 42
-    Top = 48
-    Width = 280
+    Left = 48
+    Height = 82
+    Top = 32
+    Width = 264
     Alignment = taLeftJustify
     BevelWidth = 2
     Caption = 'Varaždin'
@@ -70,21 +70,21 @@ object Form1: TForm1
     OnClick = Button1Click
   end
   object Label5: TLabel
-    Left = 40
+    Left = 8
     Height = 32
-    Top = 128
-    Width = 153
-    Caption = 'Vrsta karte'
+    Top = 144
+    Width = 75
+    Caption = 'Karta'
     Font.Height = -27
     Font.Name = 'Sans'
     ParentColor = False
     ParentFont = False
   end
   object KartaPanel: TPanel
-    Left = 200
-    Height = 42
+    Left = 88
+    Height = 82
     Top = 120
-    Width = 176
+    Width = 224
     Alignment = taLeftJustify
     BevelWidth = 2
     Caption = 'Redovna'
@@ -93,9 +93,9 @@ object Form1: TForm1
     TabOrder = 3
   end
   object Label6: TLabel
-    Left = 416
+    Left = 320
     Height = 32
-    Top = 128
+    Top = 144
     Width = 92
     Caption = 'Popust'
     Font.Height = -27
@@ -104,10 +104,10 @@ object Form1: TForm1
     ParentFont = False
   end
   object PopustPanel: TPanel
-    Left = 528
-    Height = 42
+    Left = 416
+    Height = 82
     Top = 120
-    Width = 226
+    Width = 208
     Alignment = taLeftJustify
     BevelWidth = 2
     Caption = '0%'
@@ -116,30 +116,34 @@ object Form1: TForm1
     TabOrder = 4
   end
   object Button2: TButton
-    Left = 336
+    Left = 8
     Height = 89
-    Top = 224
-    Width = 144
+    Top = 208
+    Width = 616
     Caption = '+'
+    OnClick = Button2Click
     TabOrder = 5
   end
   object ListBox1: TListBox
-    Left = 19
-    Height = 214
-    Top = 344
-    Width = 607
+    Left = 8
+    Height = 208
+    Top = 352
+    Width = 616
     ItemHeight = 0
+    OnClick = ListBox1Click
     TabOrder = 6
     TopIndex = -1
   end
   object Label1: TLabel
-    Left = 640
-    Height = 41
-    Top = 400
-    Width = 155
-    Caption = '34,18 Kn'
-    Font.Height = -34
-    Font.Name = 'Sans'
+    Left = 629
+    Height = 65
+    Top = 376
+    Width = 166
+    Alignment = taRightJustify
+    AutoSize = False
+    Caption = '534,18 Kn'
+    Font.Height = -43
+    Font.Name = 'PT Sans Narrow'
     ParentColor = False
     ParentFont = False
   end
@@ -187,6 +191,30 @@ object Form1: TForm1
     ParentColor = False
     ParentFont = False
     Transparent = False
+  end
+  object Edit1: TEdit
+    Left = 8
+    Height = 41
+    Top = 304
+    Width = 616
+    TabOrder = 7
+    Text = 'Edit1'
+  end
+  object Button3: TButton
+    Left = 629
+    Height = 80
+    Top = 80
+    Width = 166
+    Caption = 'Barkod'
+    TabOrder = 8
+  end
+  object Button4: TButton
+    Left = 629
+    Height = 80
+    Top = 184
+    Width = 166
+    Caption = 'Tuđa karta'
+    TabOrder = 9
   end
   object ZConnection1: TZConnection
     Protocol = 'sqlite-3'
