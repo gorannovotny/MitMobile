@@ -1,7 +1,7 @@
 object Picker: TPicker
-  Left = 0
+  Left = 466
   Height = 524
-  Top = 218
+  Top = 165
   Width = 294
   AutoSize = True
   BorderStyle = bsNone
@@ -43,14 +43,13 @@ object Picker: TPicker
   end
   object ZReadOnlyQuery1: TZReadOnlyQuery
     Connection = ZConnection1
-    Active = True
     SQL.Strings = (
       'SELECT ptpostajevarijantvr.id,ptpostaje.naziv FROM PTPostaje,PTPostajeVR,PTPostajeVarijantVR,PTVarijanteVR,PTStupciVR'
       'WHERE PTPostajeVR.postajaid = PTPostaje.id'
       'AND   PTPostajeVarijantVR.NodePostajeVRID = PTPostajeVR.ID'
       'AND   PTVarijanteVR.id = PTPostajeVarijantVR.VarijantaID'
       'AND   PTStupciVR.VarijantaVRID = PTVarijanteVR.id'
-      'AND   PTStupciVR.ID = 7'
+      'AND   PTStupciVR.ID = 24886'
       'ORDER BY 1'
     )
     Params = <>
