@@ -37,12 +37,3 @@ ORDER BY 1;
 SELECT * FROM PTPostajeVarijantVR ;
 SELECT * FROM PTKTVozneKarte;
 
-SELECT * FROM PTStupciVR WHERE PTStupciVR.VarijantaVRID = 17674;
-SELECT * FROM PTPostajeVarijantVR WHERE PTPostajeVarijantVR.VarijantaID = 17674;
-SELECT * FROM PTPostajeVR;
-SELECT * FROM PTVarijanteVR WHERE PTVarijanteVR.VozniRedID = 15441;
-SELECT * FROM PTPostajeVarijantVR WHERE PTPostajeVarijantVR.VarijantaID IN (17679,
-17680,
-18652,
-18643);
-SELECT * FROM PTStupciVR WHERE PTStupciVR.VarijantaVRID = 17679;
