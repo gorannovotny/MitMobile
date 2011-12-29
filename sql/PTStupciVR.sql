@@ -1,5 +1,26 @@
 DROP TABLE PTStupciVR;
-CREATE TABLE PTStupciVR ( ID INT NOT NULL , Firma INT NOT NULL, VozniRedID INT NOT NULL, VarijantaVRID INT NOT NULL, ZapSt VARCHAR(8) NOT NULL, SmerVoznje VARCHAR(5) , DneviVoznjeID INT, PrevoznikID INT, VrstaPrevoza INT, VrstaBusa INT, NacinPrevoza INT, VrstaPosadeID INT, VremeOdhoda FLOAT(53), OE INT, VeljaOd DATETIME, VeljaDo DATETIME, StatusERR INT, DOSID INT, CONSTRAINT PK_PTStupciVR PRIMARY KEY (ID) );
+CREATE TABLE PTStupciVR
+    (
+        ID INT NOT NULL,
+        Firma INT NOT NULL,
+        VozniRedID INT NOT NULL,
+        VarijantaVRID INT NOT NULL REFERENCES PTVarijanteVR(ID),
+        ZapSt VARCHAR(8) NOT NULL,
+        SmerVoznje VARCHAR(5),
+        DneviVoznjeID INT,
+        PrevoznikID INT,
+        VrstaPrevoza INT,
+        VrstaBusa INT,
+        NacinPrevoza INT,
+        VrstaPosadeID INT,
+        VremeOdhoda FLOAT(53),
+        OE INT,
+        VeljaOd DATETIME,
+        VeljaDo DATETIME,
+        StatusERR INT,
+        DOSID INT,
+        PRIMARY KEY(ID)
+    ) ;
 insert into PTStupciVR (ID, Firma, VozniRedID, VarijantaVRID, ZapSt, SmerVoznje, DneviVoznjeID, PrevoznikID, VrstaPrevoza, VrstaBusa, NacinPrevoza, VrstaPosadeID, VremeOdhoda, OE, VeljaOd, VeljaDo, StatusERR, DOSID) values (5, 3, 1, 1, '1', '+', 1, null, 10, 2, 10, 20, null, 1, null, null, null, null);
 insert into PTStupciVR (ID, Firma, VozniRedID, VarijantaVRID, ZapSt, SmerVoznje, DneviVoznjeID, PrevoznikID, VrstaPrevoza, VrstaBusa, NacinPrevoza, VrstaPosadeID, VremeOdhoda, OE, VeljaOd, VeljaDo, StatusERR, DOSID) values (6, 3, 1, 1, '2', '-', 1, null, 40, null, 10, null, null, null, null, null, null, null);
 insert into PTStupciVR (ID, Firma, VozniRedID, VarijantaVRID, ZapSt, SmerVoznje, DneviVoznjeID, PrevoznikID, VrstaPrevoza, VrstaBusa, NacinPrevoza, VrstaPosadeID, VremeOdhoda, OE, VeljaOd, VeljaDo, StatusERR, DOSID) values (7, 3, 2, 3, '01', '-', 1, 2, 70, 3, 40, 1, 0.3416666666666667, 1, '2011-01-01 00:00:00', '2011-12-31 00:00:00', 0, null);

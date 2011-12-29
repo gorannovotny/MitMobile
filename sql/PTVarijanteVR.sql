@@ -1,5 +1,14 @@
 DROP TABLE PTVarijanteVR;
-CREATE TABLE PTVarijanteVR ( ID INT NOT NULL , VozniRedID INT NOT NULL, Varijanta INT NOT NULL, Opis1 VARCHAR(80) , Opis2 VARCHAR(80) , DOSVarID INT, CONSTRAINT PK_PTVarijanteVRID PRIMARY KEY (ID) );
+CREATE TABLE PTVarijanteVR
+    (
+        ID INT NOT NULL,
+        VozniRedID INT NOT NULL REFERENCES PTVozniRedi(ID),
+        Varijanta INT NOT NULL,
+        Opis1 VARCHAR(80),
+        Opis2 VARCHAR(80),
+        DOSVarID INT,
+        PRIMARY KEY(ID)
+    ) ;
 insert into PTVarijanteVR (ID, VozniRedID, Varijanta, Opis1, Opis2, DOSVarID) values (1, 1, 1, 'Dalj - Gračac (standardno)', 'Gračac - Dalj', null);
 insert into PTVarijanteVR (ID, VozniRedID, Varijanta, Opis1, Opis2, DOSVarID) values (3, 2, 1, 'A postaja/N postaja', 'N postaja/A postaja', null);
 insert into PTVarijanteVR (ID, VozniRedID, Varijanta, Opis1, Opis2, DOSVarID) values (12, 2, 2, 'Varijanta 2', '', null);

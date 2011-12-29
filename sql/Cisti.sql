@@ -52,9 +52,9 @@ SELECT * FROM PTKTVozneKarte;
 
 SELECT * FROM PTStupciVR
 ;
-create index ix1 on PTPostajeVR(postajaid);
-create index ix2 on PTPostajeVarijantVR(NodePostajeVRID);
-create index ix3 on PTPostajeVarijantVR(VarijantaID);
-create index ix4 on PTStupciVR(VarijantaVRID);
+--create index ix1 on PTPostajeVR(postajaid);
+--create index ix2 on PTPostajeVarijantVR(NodePostajeVRID);
+--create index ix3 on PTPostajeVarijantVR(VarijantaID);
+--create index ix4 on PTStupciVR(VarijantaVRID);
 
 vacuum

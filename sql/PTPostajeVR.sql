@@ -1,5 +1,18 @@
 DROP TABLE PTPostajeVR;
-CREATE TABLE PTPostajeVR ( ID INT NOT NULL , VozniRedID INT NOT NULL, ZapSt INT NOT NULL, Vozel INT NOT NULL, PostajaID INT, KumDistancaM INT, DistancaM INT, Staje CHAR(1) , DosID INT, CONSTRAINT PK_PTPostajeVRID PRIMARY KEY (ID) );
+CREATE TABLE PTPostajeVR (
+        ID INT NOT NULL,
+        VozniRedID INT NOT NULL,
+        ZapSt INT NOT NULL,
+        Vozel INT NOT NULL,
+        PostajaID INT NOT NULL,
+        KumDistancaM INT,
+        DistancaM INT,
+        Staje CHAR,
+        DosID INT,
+        PRIMARY KEY(ID),
+        CONSTRAINT FOREIGN KEY(PostajaID) REFERENCES PTPostaje(ID) ON UPDATE NO ACTION ON DELETE NO ACTION,
+        CONSTRAINT FOREIGN KEY(VozniRedID) REFERENCES PTVozniRedi(ID) ON UPDATE NO ACTION ON DELETE NO ACTION
+    );
 insert into PTPostajeVR (ID, VozniRedID, ZapSt, Vozel, PostajaID, KumDistancaM, DistancaM, Staje, DosID) values (2, 1, 1, 0, 3, null, 0, 'D', null);
 insert into PTPostajeVR (ID, VozniRedID, ZapSt, Vozel, PostajaID, KumDistancaM, DistancaM, Staje, DosID) values (3, 1, 2, 0, 5, null, 500, 'D', null);
 insert into PTPostajeVR (ID, VozniRedID, ZapSt, Vozel, PostajaID, KumDistancaM, DistancaM, Staje, DosID) values (4, 2, 1, 0, 6, null, 0, 'D', null);
