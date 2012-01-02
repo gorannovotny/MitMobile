@@ -172,4 +172,42 @@ CREATE TABLE PTKTVozneKarte
         PopustProcent FLOAT,
         SifraValute INT,
         PRIMARY KEY(ID)
-    )
+    );
+
+CREATE TABLE PTKTTarifniRazrediCenik
+    (
+        ID INT NOT NULL ,
+        Firma INT NOT NULL,
+        IDRazreda INT NOT NULL,
+        VeljaOd DATETIME NOT NULL,
+        OdKM INT NOT NULL,
+        Cena FLOAT(53),
+       PRIMARY KEY(ID)
+    ) ;
+    
+CREATE TABLE PTKTVrstePopustov
+    (
+        ID INT NOT NULL ,
+        Firma INT NOT NULL,
+        Sifra INT NOT NULL,
+        Oznaka VARCHAR(10) NOT NULL,
+        Opis VARCHAR(50),
+        NacinIzracuna INT,
+        Vrednost FLOAT(53),
+        PRIMARY KEY(ID)
+    ) ;
+    
+CREATE TABLE PTIzjemeCenikaVR
+    (
+        ID INT NOT NULL ,
+        Firma INT NOT NULL,
+        TarifniCenikID ,
+        VeljaOd DATETIME NOT NULL,
+        VozniRedID INT NOT NULL,
+        VarijantaID INT NOT NULL ,
+        StupacID INT NOT NULL ,
+        Postaja1ID INT NOT NULL,
+        Postaja2ID INT NOT NULL,
+        Cena FLOAT(53),
+        PRIMARY KEY(ID)
+    ) ;

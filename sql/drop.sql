@@ -7,3 +7,6 @@ DROP TABLE PTCasiVoznjeVR;
 DROP TABLE PTKTVozneKarte;
 DROP TABLE PTKTProdaja;
 DROP TABLE PTVozniRedi;
+DROP TABLE PTIzjemeCenikaVR;
+DROP TABLE PTKTVrstePopustov;
+DROP TABLE PTKTTarifniRazrediCenik;
