@@ -45,7 +45,7 @@ AND   PTStupciVR.VarijantaVRID = PTVarijanteVR.id
 AND   PTVarijanteVR.VozniRedID = PTVozniRedi.ID
 AND   PTCasiVoznjeVR.NodePostajeVarijanteVRID = PTPostajeVarijantVR.ID
 AND   PTCasiVoznjeVR.StupacVRID = PTStupciVR.ID
-AND   PTStupciVR.ID = 24772
+AND   PTStupciVR.ID = 42877
 ORDER BY 1;
 SELECT * FROM PTPostajeVarijantVR ;
 SELECT * FROM PTKTVozneKarte;

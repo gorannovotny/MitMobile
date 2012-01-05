@@ -5,8 +5,8 @@ unit Picker;
 interface
 
 uses
-  Forms, StdCtrls, ExtCtrls, SysUtils, Controls, Classes, Graphics, ZDataset,
-  ZConnection;
+  Forms, StdCtrls, ExtCtrls, SysUtils, Controls, Classes, db, Graphics,
+  ZDataset, ZConnection;
 
 const MaxPicks = 5;
 type
@@ -16,6 +16,8 @@ type
     UpButton: TButton;
     ZConnection1: TZConnection;
     ZReadOnlyQuery1: TZReadOnlyQuery;
+    ZReadOnlyQuery1ID: TLongintField;
+    ZReadOnlyQuery1Naziv: TStringField;
     procedure DownButtonClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure UpButtonClick(Sender: TObject);
@@ -71,8 +73,8 @@ begin
   SetLength(Recs,100);
   while not ZReadOnlyQuery1.EOF do
   begin
-        Recs[x].id := ZReadOnlyQuery1.FindField('id').AsInteger;
-        Recs[x].naziv := ZReadOnlyQuery1.FindField('naziv').AsString;
+        Recs[x].id := ZReadOnlyQuery1ID.AsInteger;
+        Recs[x].naziv := ZReadOnlyQuery1Naziv.AsString;
         ZReadOnlyQuery1.Next;
         x:= x + 1;
   end;

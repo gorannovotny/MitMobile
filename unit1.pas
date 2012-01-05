@@ -5,7 +5,7 @@ unit Unit1;
 interface
 
 uses
-  Forms, StdCtrls, ExtCtrls, db, ZConnection, ZDataset,Picker, Controls, Classes,SysUtils;
+  Forms, StdCtrls, ExtCtrls, db, ZConnection, ZDataset,Picker, Controls, Classes,SysUtils,CijenaKarte;
 
 type
   { TForm1 }
@@ -38,6 +38,7 @@ type
     procedure Button1MouseDown(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Integer);
     procedure Button2Click(Sender: TObject);
+    procedure HeaderPanelClick(Sender: TObject);
     procedure ListBox1Click(Sender: TObject);
     procedure Timer1Timer(Sender: TObject);
 
@@ -68,6 +69,11 @@ begin
   ListBox1.Items.Add(OdPanel.Caption + ' - ' + DoPanel.Caption + ' ' + KartaPanel.Caption + ' ' + PopustPanel.Caption);
 end;
 
+procedure TForm1.HeaderPanelClick(Sender: TObject);
+begin
+
+end;
+
 procedure TForm1.ListBox1Click(Sender: TObject);
 begin
 
@@ -77,6 +83,9 @@ end;
 procedure TForm1.Timer1Timer(Sender: TObject);
 begin
      Label2.Caption:=  TimeToStr(Now);
+//     Edit1.Text := FormatFloat('000.00',CijenaKarte.tarifnaCijenaCjenika(ZReadOnlyQuery1,1,27,Now));
+//     Edit1.Text := FormatFloat('000.00',CijenaKarte.izracunPopustaKarte(ZReadOnlyQuery1,2,50));
+     Edit1.Text := IntToStr(CijenaKarte.distancaVarijante(ZReadOnlyQuery1,22184,37,38));
 end;
 
 

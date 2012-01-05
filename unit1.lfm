@@ -161,6 +161,7 @@ object Form1: TForm1
     ParentColor = False
     ParentFont = False
     Transparent = False
+    OnClick = HeaderPanelClick
   end
   object FooterPanel: TLabel
     Left = 0
@@ -218,6 +219,8 @@ object Form1: TForm1
   end
   object ZConnection1: TZConnection
     Protocol = 'sqlite-3'
+    Database = '/home/goran/work/MitMobile/sqlite.db'
+    Connected = True
     left = 8
     top = 8
   end
